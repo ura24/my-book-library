@@ -52,9 +52,9 @@
                         <td th:text="${book.price}">値段</td>
                         <td><a class="btn btn-outline-primary btn-sm" href="#">詳細</a></td>
                         <td>
-                            <form action="#" method="post">
+                            <form action="#" th:action="@{/delete}" method="post">
+                                <input type="hidden" th:value="${book.id}" name="id">
                                 <button class="delete-action btn btn-outline-danger btn-sm" type="submit">削除</button>
-                                <input type="hidden" name="id">
                             </form>
                         </td>
                     </tr>

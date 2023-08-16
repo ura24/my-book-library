@@ -23,4 +23,8 @@ public class BookService {
     public List<Book> showList() {
         return bookRepository.findAll();
     }
+
+    public void delete(int id) {
+        bookRepository.delete(id);
+    }
 }

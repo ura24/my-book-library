@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.mybooklibrary.domain.Book;
@@ -26,8 +27,13 @@ public class BookController {
     public String index(Model model) {
         List<Book> bookList = bookService.showList();
         model.addAttribute("bookList", bookList);
-        model.addAttribute("hello", "hello");
         return "list.html";
+    }
+
+    @PostMapping("/delete")
+    public String delete(int id) {
+        bookService.delete(id);
+        return "redirect:";
     }
 
 }
