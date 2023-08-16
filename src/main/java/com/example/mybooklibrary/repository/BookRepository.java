@@ -25,8 +25,7 @@ public class BookRepository {
         book.setPrice(rs.getInt("price"));
         book.setGenre(rs.getString("genre"));
         book.setRating(rs.getInt("rating"));
-        book.setImageUrl(rs.getString("image_url"));
-        book.setImageUrl(rs.getString("impression"));
+        book.setImpression(rs.getString("impression"));
         return book;
     };
 
@@ -38,7 +37,7 @@ public class BookRepository {
         String sql =
                 """
                 Select
-                    id, title, author, publisher, publication_date, price, genre, rating, image_url, impression
+                    id, title, author, publisher, publication_date, price, genre, rating, impression
                 FROM
                     books
                 """;

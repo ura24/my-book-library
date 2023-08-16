@@ -19,8 +19,6 @@ public class Book {
     private String genre;
     /** 評価 */
     private Integer rating;
-    /** 画像URL */
-    private String imageUrl;
     /** 感想 */
     private String impression;
     
@@ -73,12 +71,6 @@ public class Book {
     public void setRating(Integer rating) {
         this.rating = rating;
     }
-    public String getImageUrl() {
-        return imageUrl;
-    }
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
     public String getImpression() {
         return impression;
     }
@@ -90,6 +82,6 @@ public class Book {
     public String toString() {
         return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publisher=" + publisher
                 + ", publicationDate=" + publicationDate + ", price=" + price + ", genre=" + genre + ", rating="
-                + rating + ", imageUrl=" + imageUrl + ", impression=" + impression + "]";
+                + rating + ", impression=" + impression + "]";
     }
 }
