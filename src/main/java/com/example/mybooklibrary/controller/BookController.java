@@ -30,6 +30,11 @@ public class BookController {
         return "list.html";
     }
 
+    @GetMapping("/toRegister")
+    public String toRegister() {
+        return "register.html";
+    }
+
     @PostMapping("/delete")
     public String delete(int id) {
         bookService.delete(id);
