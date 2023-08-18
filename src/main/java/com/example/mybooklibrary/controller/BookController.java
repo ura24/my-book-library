@@ -66,8 +66,6 @@ public class BookController {
     @PostMapping("/register")
     public String register(@Validated RegisterForm registerForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            System.out.println("ああああああああ");
-            System.out.println(registerForm);
             return toRegister(registerForm, model);
         }
 
