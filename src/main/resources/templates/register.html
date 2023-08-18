@@ -39,6 +39,7 @@
                             <label for="title">Title</label>
                         </th>
                         <td>
+                            <div th:errors="*{title}" style="color:red">エラー!</div>
                             <input type="text" class="form-control" id="title" placeholder="星の王子さま" th:field="*{title}">
                         </td>
                     </tr>
@@ -47,6 +48,7 @@
                             <label for="author">Author</label>
                         </th>
                         <td>
+                            <div th:errors="*{author}" style="color:red">エラー!</div>
                             <input type="text" class="form-control" id="author" placeholder="サン=テグジュペリ" th:field="*{author}">
                         </td>
                     </tr>
@@ -55,6 +57,7 @@
                             <label for="publisher">Publisher</label>
                         </th>
                         <td>
+                            <div th:errors="*{publisher}" style="color:red">エラー!</div>
                             <input type="text" class="form-control" id="publisher" placeholder="新潮文庫" th:field="*{publisher}">
                         </td>
                     </tr>
@@ -63,6 +66,7 @@
                             <label for="publicationDate">Publication date</label>
                         </th>
                         <td>
+                            <div th:errors="*{publicationDate}" style="color:red">エラー!</div>
                             <input type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')"
                                 class="form-control" id="publicationDate" value="" placeholder="2006-3-28" th:field="*{publicationDate}">
                         </td>
@@ -72,6 +76,7 @@
                             <label for="price">Price</label>
                         </th>
                         <td>
+                            <div th:errors="*{price}" style="color:red">エラー!</div>
                             <input type="text" class="form-control" id="price" placeholder="528" th:field="*{price}">
                         </td>
                     </tr>
@@ -80,6 +85,7 @@
                             <label for="genre">Genre</label>
                         </th>
                         <td>
+                            <div th:errors="*{genre}" style="color:red">エラー!</div>
                             <select class="form-select" id="genre" th:field="*{genre}">
                                 <option th:each="genre: ${genreList}" th:value="${genre}" th:text="${genre}" >
                             </select>

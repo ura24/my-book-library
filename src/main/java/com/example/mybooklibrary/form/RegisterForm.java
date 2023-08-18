@@ -1,17 +1,27 @@
 package com.example.mybooklibrary.form;
 
+import org.hibernate.validator.constraints.Length;
+
+import jakarta.validation.constraints.NotBlank;
+
 public class RegisterForm {
     /** タイトル */
+    @NotBlank(message = "タイトルを入力してください")
     private String title;
     /** 著者 */
+    @NotBlank(message = "著者を入力してください")
     private String author;
     /** 出版社 */
+    @NotBlank(message = "出版社を入力してください")
     private String publisher;
     /** 出版日 */
+    @NotBlank(message = "出版日を入力してください")
     private String publicationDate;
     /** 値段 */
+    @NotBlank(message = "値段を入力してください")
     private String price;
     /** ジャンル */
+    @Length(min = 1, message = "ジャンルを選択してください")
     private String genre;
     /** 評価 */
     private String rating;
@@ -73,5 +83,5 @@ public class RegisterForm {
                 + publicationDate + ", price=" + price + ", genre=" + genre + ", rating=" + rating + ", impression="
                 + impression + "]";
     }
-    
+
 }
