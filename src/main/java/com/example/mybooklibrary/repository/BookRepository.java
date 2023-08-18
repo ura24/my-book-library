@@ -17,7 +17,7 @@ public class BookRepository {
     @Autowired
     private NamedParameterJdbcTemplate template;
 
-    private final static RowMapper<Book> BOOK_ROW_MAPPER = (rs, i) -> {
+    private static final RowMapper<Book> BOOK_ROW_MAPPER = (rs, i) -> {
         Book book = new Book();
         book.setId(rs.getInt("id"));
         book.setTitle(rs.getString("title"));
