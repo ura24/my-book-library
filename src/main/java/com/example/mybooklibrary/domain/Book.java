@@ -21,6 +21,34 @@ public class Book {
     private Integer rating;
     /** 感想 */
     private String impression;
+
+    /**
+     * 引数なしコンストラクタ
+     */
+    public Book() {}
+    
+    /**
+     * 引数ありコンストラクタ
+     * @param title
+     * @param author
+     * @param publisher
+     * @param publicationDate
+     * @param price
+     * @param genre
+     * @param rating
+     * @param impression
+     */
+    public Book(String title, String author, String publisher, Date publicationDate, Integer price, String genre,
+            Integer rating, String impression) {
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+        this.price = price;
+        this.genre = genre;
+        this.rating = rating;
+        this.impression = impression;
+    }
     
     public Integer getId() {
         return id;

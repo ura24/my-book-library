@@ -31,14 +31,21 @@ public class BookRepository {
         return book;
     };
 
-    private final String findAllSql = """
+    private final String FIND_ALL_SQL = """
             Select
                 id, title, author, publisher, publication_date, price, genre, rating, impression
             FROM
                 books;
             """;
+
+    private final String INSERT_SQL = """
+            INSERT INTO
+                books(title, author, publisher, publication_date, price, genre, rating, impression)
+            VALUES
+                (:title, :author, :publisher, :publicationDate, :price, :genre, :rating, :impression)
+            """;
     
-    private final String deleteSql = """
+    private final String DELETE_SQL = """
             DELETE FROM
                 books
             WHERE
@@ -50,8 +57,21 @@ public class BookRepository {
      * @return 書籍全件
      */
     public List<Book> findAll() {
-        List<Book> bookList = template.query(findAllSql, BOOK_ROW_MAPPER);
+        List<Book> bookList = template.query(FIND_ALL_SQL, BOOK_ROW_MAPPER);
         return bookList;
+    }
+
+    public void insert(Book book) {
+        SqlParameterSource param = new MapSqlParameterSource()
+                                        .addValue("title", book.getTitle())
+                                        .addValue("author", book.getAuthor())
+                                        .addValue("publisher", book.getPublisher())
+                                        .addValue("publicationDate", book.getPublicationDate())
+                                        .addValue("price", book.getPrice())
+                                        .addValue("genre", book.getGenre())
+                                        .addValue("rating", book.getRating())
+                                        .addValue("impression", book.getImpression());
+        template.update(INSERT_SQL, param);
     }
 
     /**
@@ -60,6 +80,6 @@ public class BookRepository {
      */
     public void delete(Integer id) {
         SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
-        template.update(deleteSql, param);
+        template.update(DELETE_SQL, param);
     }
 }

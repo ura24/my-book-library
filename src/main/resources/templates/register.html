@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -32,14 +32,14 @@
 
     <main class="mt-5">
         <div class="container">
-            <form action="#" th:action="@{/register}" style="width: 50%; margin: 0 auto;">
+            <form action="#" th:action="@{/register}" method="post" style="width: 50%; margin: 0 auto;" th:object="${registerForm}">
                 <table class="table">
                     <tr>
                         <th>
                             <label for="title">Title</label>
                         </th>
                         <td>
-                            <input type="text" class="form-control" id="title" placeholder="星の王子さま">
+                            <input type="text" class="form-control" id="title" placeholder="星の王子さま" th:field="*{title}">
                         </td>
                     </tr>
                     <tr>
@@ -47,7 +47,7 @@
                             <label for="author">Author</label>
                         </th>
                         <td>
-                            <input type="text" class="form-control" id="author" placeholder="サン=テグジュペリ">
+                            <input type="text" class="form-control" id="author" placeholder="サン=テグジュペリ" th:field="*{author}">
                         </td>
                     </tr>
                     <tr>
@@ -55,7 +55,7 @@
                             <label for="publisher">Publisher</label>
                         </th>
                         <td>
-                            <input type="text" class="form-control" id="publisher" placeholder="新潮文庫">
+                            <input type="text" class="form-control" id="publisher" placeholder="新潮文庫" th:field="*{publisher}">
                         </td>
                     </tr>
                     <tr>
@@ -64,7 +64,15 @@
                         </th>
                         <td>
                             <input type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')"
-                                class="form-control" id="publicationDate" value="" placeholder="2006-3-28">
+                                class="form-control" id="publicationDate" value="" placeholder="2006-3-28" th:field="*{publicationDate}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="price">Price</label>
+                        </th>
+                        <td>
+                            <input type="text" class="form-control" id="price" placeholder="528" th:field="*{price}">
                         </td>
                     </tr>
                     <tr>
@@ -72,27 +80,8 @@
                             <label for="genre">Genre</label>
                         </th>
                         <td>
-                            <select class="form-select" id="genre">
-                                <option selected>選択してください</option>
-                                <option value="文学・評論">文学・評論</option>
-                                <option value="ノンフィクション">ノンフィクション</option>
-                                <option value="ビジネス・経済">ビジネス・経済</option>
-                                <option value="歴史・地理">歴史・地理</option>
-                                <option value="政治・社会">政治・社会</option>
-                                <option value="芸能・エンターテイメント">芸能・エンターテイメント</option>
-                                <option value="アート・建築・デザイン">アート・建築・デザイン</option>
-                                <option value="人文・思想・宗教">人文・思想・宗教</option>
-                                <option value="暮らし・健康・料理">暮らし・健康・料理</option>
-                                <option value="コンピュータ・IT">コンピュータ・IT</option>
-                                <option value="自然科学">自然科学</option>
-                                <option value="趣味・応用">趣味・応用</option>
-                                <option value="教育・自己啓発">教育・自己啓発</option>
-                                <option value="辞典・年鑑・本・ことば">辞典・年鑑・本・ことば</option>
-                                <option value="音楽">音楽</option>
-                                <option value="旅行・紀行">旅行・紀行</option>
-                                <option value="絵本・児童書">絵本・児童書</option>
-                                <option value="コミックス">コミックス</option>
-
+                            <select class="form-select" id="genre" th:field="*{genre}">
+                                <option th:each="genre: ${genreList}" th:value="${genre}" th:text="${genre}" >
                             </select>
                         </td>
                     </tr>
@@ -101,7 +90,7 @@
                             <label for="rating">Rating</label>
                         </th>
                         <td>
-                            <input type="range" min="1" max="5" class="form-range" id="rating" />
+                            <input type="range" min="1" max="5" class="form-range" id="rating" th:field="*{rating}" />
                         </td>
                     </tr>
                     <tr>
@@ -109,7 +98,7 @@
                             <label for="impression">Impression</label>
                         </th>
                         <td>
-                            <textarea name="impression" id="impression" class="form-control" rows="5"></textarea>
+                            <textarea name="impression" id="impression" class="form-control" rows="5" th:field="*{impression}"></textarea>
                         </td>
                     </tr>
                 </table>

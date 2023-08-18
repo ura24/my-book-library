@@ -1,5 +1,8 @@
 package com.example.mybooklibrary.controller;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.mybooklibrary.domain.Book;
+import com.example.mybooklibrary.form.RegisterForm;
 import com.example.mybooklibrary.service.BookService;
 
 @Controller
@@ -31,8 +35,47 @@ public class BookController {
     }
 
     @GetMapping("/toRegister")
-    public String toRegister() {
+    public String toRegister(RegisterForm registerForm, Model model) {
+        List<String> genreList = new ArrayList<>(Arrays.asList(
+                                    "",
+                                    "文学・評論", 
+                                    "ノンフィクション",
+                                    "ビジネス・経済",
+                                    "歴史・地理",
+                                    "政治・社会",
+                                    "芸能・エンターテイメント",
+                                    "アート・建築・デザイン",
+                                    "人文・思想・宗教",
+                                    "暮らし・健康・料理",
+                                    "コンピュータ・IT",
+                                    "自然科学",
+                                    "趣味・応用",
+                                    "教育・自己啓発",
+                                    "辞典・年鑑・本・ことば",
+                                    "音楽",
+                                    "旅行・紀行",
+                                    "絵本・児童書",
+                                    "コミックス"));
+        model.addAttribute("genreList", genreList);
+
         return "register.html";
+    }
+
+    @PostMapping("/register")
+    public String register(RegisterForm registerForm) {
+        Book book = new Book(
+                        registerForm.getTitle(), 
+                        registerForm.getAuthor(), 
+                        registerForm.getPublisher(), 
+                        Date.valueOf(registerForm.getPublicationDate()), 
+                        Integer.valueOf(registerForm.getPrice()), 
+                        registerForm.getGenre(), 
+                        Integer.valueOf(registerForm.getRating()),
+                        registerForm.getImpression()
+                    ); 
+        bookService.register(book);
+        return "redirect:/";
+
     }
 
     @PostMapping("/delete")

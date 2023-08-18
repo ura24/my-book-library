@@ -24,6 +24,18 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    /**
+     * 書籍を登録
+     * @param book 書籍情報
+     */
+    public void register(Book book) {
+        bookRepository.insert(book);
+    }
+
+    /**
+     * IDに一致する書籍を削除
+     * @param id 書籍ID
+     */
     public void delete(int id) {
         bookRepository.delete(id);
     }
