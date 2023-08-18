@@ -29,13 +29,19 @@ public class BookController {
      * 一覧画面を表示
      * @return
      */
-    @GetMapping("")
+    @GetMapping("/")
     public String index(Model model) {
         List<Book> bookList = bookService.showList();
         model.addAttribute("bookList", bookList);
         return "list.html";
     }
 
+    /**
+     * 書籍登録画面へ遷移
+     * @param registerForm 書籍登録フォーム
+     * @param model モデル
+     * @return 書籍登録画面
+     */
     @GetMapping("/toRegister")
     public String toRegister(RegisterForm registerForm, Model model) {
         List<String> genreList = new ArrayList<>(Arrays.asList(
@@ -63,6 +69,13 @@ public class BookController {
         return "register.html";
     }
 
+    /**
+     * 書籍を登録
+     * @param registerForm 書籍登録フォーム
+     * @param result バインド結果
+     * @param model モデル
+     * @return 書籍一覧画面
+     */
     @PostMapping("/register")
     public String register(@Validated RegisterForm registerForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
@@ -85,10 +98,15 @@ public class BookController {
 
     }
 
+    /**
+     * 書籍を削除
+     * @param id 書籍ID
+     * @return 書籍一覧画面
+     */
     @PostMapping("/delete")
     public String delete(int id) {
         bookService.delete(id);
-        return "redirect:";
+        return "redirect:/";
     }
 
 }
