@@ -26,11 +26,20 @@ public class BookController {
     private BookService bookService;
     
     /**
-     * 一覧画面を表示
-     * @return
+     * ログイン画面を表示
+     * @return ログイン画面
      */
     @GetMapping("/")
     public String index(Model model) {
+        return "login.html";
+    }
+
+    /**
+     * 一覧画面を表示
+     * @return 一覧画面
+     */
+    @GetMapping("/showList")
+    public String showList(Model model) {
         List<Book> bookList = bookService.showList();
         model.addAttribute("bookList", bookList);
         return "list.html";
